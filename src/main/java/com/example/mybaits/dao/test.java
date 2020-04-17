@@ -6,6 +6,6 @@ public class test {
 
 String  s="a";
 
-
+int b= 0;
     }
 }

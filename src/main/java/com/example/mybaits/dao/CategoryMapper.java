@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-//@Mapper
+@Mapper
 public interface CategoryMapper {
 
     @Select("select * from mall_category where id =#{id}")

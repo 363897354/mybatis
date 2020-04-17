@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybaits.dao.CategoryMapper">
+
+    <!--
+    parameterType 属性: 代表参数的类型，因为我们要传入的是一个类的对象，所以类型就写类的全名称。
+    sql 语句中使用#{}字符:
+    它代表占位符，相当于原来 jdbc 部分所学的?，都是用于执行语句时替换实际的数据。
+    具体的数据是由#{}里面的内容决定的。 #{}中内容的写法:
+    由于我们保存方法的参数是 一个 User 对象，此处要写 User 对象中的属性名称。
+    它用的是 ognl 表达式。 ognl 表达式:
+    它是 apache 提供的一种表达式语言，全称是:
+    Object Graphic Navigation Language 对象图导航语言
+
+    它是按照一定的语法格式来获取数据的。 语法格式就是使用 #{对象.对象}的方式
+    #{user.username}它会先去找 user 对象，然后在 user 对象中找到 username 属性，并调用 getUsername()方法把值取出来。但是我们在 parameterType 属性上指定了实体类名称，所以可以省略 user. 而直接写 username。
+    -->
+    <select id="queryByid" resultType="com.example.mybaits.domain.Category">
+
+        select * from mall_category where id = #{id}
+    </select>
+
+
+    <insert id="save" parameterType="com.example.mybaits.domain.Category">
+
+        insert into mall_category(parent_id,name,status,sort_order)
+        values(#{parentId},#{name},#{status},#{sortOrder})
+
+    </insert>
+
+
+    <update id="updateCategoryById" parameterType="com.example.mybaits.domain.Category">
+      update mall_category set parent_id=#{parentId},name=#{name},status=#{status},
+         sort_order=#{sortOrder} where id=#{id}
+
+
+
+    </update>
+
+    <delete id="deleteCategoryById" parameterType="Integer">
+
+        delete from mall_category where id = #{id}
+    </delete>
+
+
+
+    <!--
+    我们在配置文件中没有加入%来作为模糊查询的条件，所以在传入字符串实参时，就需要给定模糊查询的标 识%。配置文件中的#{username}也只是一个占位符，所以 SQL 语句显示为“?”。
+    List<Category> list = categoryMapper.findByName("%a%");
+    -->
+    <select id="findByName" parameterType="String" resultType="com.example.mybaits.domain.Category">
+
+        select * from mall_category where name like #{name}
+    </select>
+
+
+    <!--不叫resultType="int"  会报错-->
+    <select id="count" resultType="int">
+
+        select count(*) from mall_category
+    </select>
+
+
+    <select id="findByQueryVo"  parameterType="com.example.mybaits.domain.QueryVo" resultType="com.example.mybaits.domain.Category">
+
+         select * from mall_category where name like #{category.name}
+    </select>
+
+</mapper>

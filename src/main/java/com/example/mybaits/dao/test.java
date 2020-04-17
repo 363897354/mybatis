@@ -7,7 +7,7 @@ public class test {
     String  s="a";
 
 
-    int b= 0;
+      int b= 0;
 
     }
 }

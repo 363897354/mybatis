@@ -16,7 +16,8 @@ public class test {
       int bc =0;
         
         
-        int dd =0;
+        int dd =2;
+
 
     }
 }

@@ -14,6 +14,9 @@ public class test {
         String ad ="aaa";
 
       int bc =0;
+        
+        
+        int ad =0;
 
     }
 }

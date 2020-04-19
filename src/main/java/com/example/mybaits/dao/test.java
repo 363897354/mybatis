@@ -12,6 +12,6 @@ public class test {
       int c =0;
 
 
-        int d =0;
+        int ad =0;
     }
 }

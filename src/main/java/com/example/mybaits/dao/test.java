@@ -17,6 +17,9 @@ public class test {
         
         
         int dd =2;
+        
+        
+        String  oo="oo";
 
 
     }
